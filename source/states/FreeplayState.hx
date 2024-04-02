@@ -58,7 +58,7 @@ class FreeplayState extends MusicBeatState
 		PlayState.isStoryMode = false;
 		WeekData.reloadWeekFiles(false);
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
@@ -175,6 +175,9 @@ class FreeplayState extends MusicBeatState
 		
 		changeSelection();
 		updateTexts();
+		#if android
+		addVirtualPad(LEFT_FULL, A_B_C);
+		#end
 		super.create();
 	}
 
