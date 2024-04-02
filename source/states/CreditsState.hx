@@ -19,7 +19,7 @@ class CreditsState extends MusicBeatState
 
 	override function create()
 	{
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
@@ -28,6 +28,9 @@ class CreditsState extends MusicBeatState
 		bg = new FlxSprite().loadGraphic(Paths.image('credits/credits'));
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 		add(bg);
+		#if android
+		addVirtualPad(UP_DOWN, B);
+		#end
 		bg.screenCenter();
 	}
 
