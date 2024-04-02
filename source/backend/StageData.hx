@@ -62,7 +62,7 @@ class StageData {
 		try
 		{
 			var path:String = Paths.getSharedPath('stages/' + stage + '.json');
-			#if MODS_ALLOWED
+			#if windows
 			var modPath:String = Paths.modFolders('stages/' + stage + '.json');
 			if(FileSystem.exists(modPath))
 				return cast tjson.TJSON.parse(File.getContent(modPath));
