@@ -313,7 +313,7 @@ class PlayState extends MusicBeatState
 		Conductor.bpm = SONG.bpm;
 
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		storyDifficultyText = Difficulty.getString();
 
@@ -555,6 +555,11 @@ class PlayState extends MusicBeatState
 		uiGroup.cameras = [camHUD];
 		noteGroup.cameras = [camHUD];
 		comboGroup.cameras = [camHUD];
+
+	        #if android
+		addAndroidControls();
+		androidControls.visible = true;
+		#end
 
 		startingSong = true;
 
@@ -1231,7 +1236,7 @@ class PlayState extends MusicBeatState
 		FlxTween.tween(timeBar, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 		FlxTween.tween(timeTxt, {alpha: 1}, 0.5, {ease: FlxEase.circOut});
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence (with Time Left)
 		if(autoUpdateRPC) DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
 		#end
@@ -1881,7 +1886,7 @@ class PlayState extends MusicBeatState
 		}
 		openSubState(new PauseSubState());
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		if(autoUpdateRPC) DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
 		#end
 	}
@@ -1943,7 +1948,7 @@ class PlayState extends MusicBeatState
 
 				// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 
-				#if DISCORD_ALLOWED
+				#if desktop
 				// Game Over doesn't get his its variable because it's only used here
 				if(autoUpdateRPC) DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
 				#end
