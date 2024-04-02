@@ -125,8 +125,6 @@ class MusicBeatState extends FlxUIState
 	
 	private function get_controls()
 	
-	}
-	
 	{
 		return Controls.instance;
 	}
