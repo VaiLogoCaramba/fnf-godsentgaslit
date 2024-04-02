@@ -21,7 +21,6 @@ class MusicBeatState extends FlxUIState
 	private var curDecStep:Float = 0;
 	private var curDecBeat:Float = 0;
 	public var controls(get, never):Controls;
-	private function get_controls()
 
         #if android
 	var virtualPad:FlxVirtualPad;
@@ -122,6 +121,10 @@ class MusicBeatState extends FlxUIState
 			androidControls = null;
 		}
 		#end
+	}
+	
+	private function get_controls()
+	
 	}
 	
 	{
