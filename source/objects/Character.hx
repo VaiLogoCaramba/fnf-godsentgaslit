@@ -98,7 +98,7 @@ class Character extends FlxSprite
 				var characterPath:String = 'characters/$curCharacter.json';
 
 				var path:String = Paths.getPath(characterPath, TEXT);
-				#if MODS_ALLOWED
+				#if desktop
 				if (!FileSystem.exists(path))
 				#else
 				if (!Assets.exists(path))
@@ -112,7 +112,7 @@ class Character extends FlxSprite
 
 				try
 				{
-					#if MODS_ALLOWED
+					#if desktop
 					loadCharacterFile(Json.parse(File.getContent(path)));
 					#else
 					loadCharacterFile(Json.parse(Assets.getText(path)));
