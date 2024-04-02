@@ -41,7 +41,7 @@ class OptionsState extends MusicBeatState
 
 	override function create()
 	{
-		#if DISCORD_ALLOWED
+		#if desktop
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 
@@ -71,7 +71,9 @@ class OptionsState extends MusicBeatState
 
 		changeSelection();
 		ClientPrefs.saveSettings();
-
+                #if android
+		addVirtualPad(UP_DOWN, A_B_C);
+		#end
 		super.create();
 	}
 
@@ -79,7 +81,7 @@ class OptionsState extends MusicBeatState
 	{
 		super.closeSubState();
 		ClientPrefs.saveSettings();
-		#if DISCORD_ALLOWED
+		#if desktop
 		DiscordClient.changePresence("Options Menu", null);
 		#end
 	}
@@ -102,6 +104,15 @@ class OptionsState extends MusicBeatState
 				FlxG.sound.music.volume = 0;
 			}
 			else MusicBeatState.switchState(new MainMenuState());
+
+			#if android
+		if (virtualPad.buttonC.justPressed) {
+			#if android
+			removeVirtualPad();
+			#end
+			openSubState(new android.AndroidControlsSubState());
+		}
+		#end
 		}
 		else if (controls.ACCEPT) openSelectedSubstate(options[curSelected]);
 	}
