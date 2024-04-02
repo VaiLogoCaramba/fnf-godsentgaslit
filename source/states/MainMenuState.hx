@@ -33,7 +33,7 @@ class MainMenuState extends MusicBeatState
 		#end
 		Mods.loadTopMod();
 
-		#if DISCORD_ALLOWED
+		#if desktop
 		// Updating Discord Rich Presence
 		DiscordClient.changePresence("In the Menus", null);
 		#end
@@ -101,7 +101,9 @@ class MainMenuState extends MusicBeatState
 		startButton.onOut.callback = startButtonDeselect.bind(); 
 		creditsButton.onOut.callback = creditsButtonDeselect.bind(); 
 		optionsButton.onOut.callback = optionsButtonDeselect.bind(); 
-
+                #if android
+		addVirtualPad(LEFT_RIGHT, A_B);
+		#end
 		super.create();
 	
 		startButton.animation.play('idle');
