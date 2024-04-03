@@ -21,8 +21,31 @@ class MusicBeatState extends FlxUIState
 	private var curDecStep:Float = 0;
 	private var curDecBeat:Float = 0;
 	public var controls(get, never):Controls;
+	}
+	
+	private function get_controls()
+	
+	{
+		return Controls.instance;
+	}
 
-        #if android
+	var _psychCameraInitialized:Bool = false;
+
+	override function create() {
+		var skip:Bool = FlxTransitionableState.skipNextTransOut;
+		#if MODS_ALLOWED Mods.updatedOnState = false; #end
+
+		if(!_psychCameraInitialized) initPsychCamera();
+
+		super.create();
+
+		if(!skip) {
+			openSubState(new CustomFadeTransition(0.6, true));
+		}
+		FlxTransitionableState.skipNextTransOut = false;
+		timePassedOnState = 0;
+
+		#if android
 	var virtualPad:FlxVirtualPad;
 	var androidControls:AndroidControls;
 	var trackedinputsUI:Array<FlxActionInput> = [];
@@ -122,28 +145,6 @@ class MusicBeatState extends FlxUIState
 		}
 		#end
 	}
-	
-	private function get_controls()
-	
-	{
-		return Controls.instance;
-	}
-
-	var _psychCameraInitialized:Bool = false;
-
-	override function create() {
-		var skip:Bool = FlxTransitionableState.skipNextTransOut;
-		#if MODS_ALLOWED Mods.updatedOnState = false; #end
-
-		if(!_psychCameraInitialized) initPsychCamera();
-
-		super.create();
-
-		if(!skip) {
-			openSubState(new CustomFadeTransition(0.6, true));
-		}
-		FlxTransitionableState.skipNextTransOut = false;
-		timePassedOnState = 0;
 	}
 
 	public function initPsychCamera():PsychCamera
