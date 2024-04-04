@@ -88,8 +88,8 @@ class MenuCharacter extends FlxSprite
 					updateHitbox();
 				}
 				offset.set(charFile.position[0], charFile.position[1]);
-				animation.play('idle');
-		}
-	}
+				animation.play('idle')}
+           
+
 }
 #end
