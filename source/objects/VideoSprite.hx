@@ -10,6 +10,7 @@ class VideoSprite extends FlxSpriteGroup {
 	#if VIDEOS_ALLOWED
 	public var finishCallback:Void->Void = null;
 	public var onSkip:Void->Void = null;
+	#end
 
 	final _timeToSkip:Float = 1;
 	public var holdingTime:Float = 0;
