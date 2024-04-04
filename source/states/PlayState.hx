@@ -3487,13 +3487,6 @@ class PlayState extends MusicBeatState
 	}
 	#end
 
-		#if (!flash && MODS_ALLOWED && sys)
-		if(!runtimeShaders.exists(name) && !initLuaShader(name))
-		{
-			FlxG.log.warn('Shader $name is missing!');
-			return new FlxRuntimeShader();
-		}
-
 		var arr:Array<String> = runtimeShaders.get(name);
 		return new FlxRuntimeShader(arr[0], arr[1]);
 		#else
