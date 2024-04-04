@@ -49,7 +49,7 @@ class MenuCharacter extends FlxSprite
 				var characterPath:String = 'images/menucharacters/' + character + '.json';
 
 				var path:String = Paths.getPath(characterPath, TEXT);
-				#end
+		                }
 				{
 					path = Paths.getSharedPath('characters/' + DEFAULT_CHARACTER + '.json'); //If a character couldn't be found, change him to BF just to prevent a crash
 					color = FlxColor.BLACK;
